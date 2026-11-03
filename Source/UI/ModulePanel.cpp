@@ -111,7 +111,11 @@ namespace phaser::ui
             rows[i]->setBounds (area.getX(), area.getY() + (int) i * rowH, area.getWidth(), rowH);
 
         if (enableBtn.isVisible())
-            enableBtn.setBounds (right ? getWidth() - (int) (150 * s) : (int) (150 * s), (int) (16 * s), (int) (52 * s), (int) (26 * s));
+        {
+            const int bw = (int) (52 * s), bh = (int) (26 * s);
+            const int bx = right ? (int) (14 * s) : getWidth() - (int) (66 * s);
+            enableBtn.setBounds (bx, (int) (10 * s), bw, bh);
+        }
     }
 
     void ModulePanel::paint (juce::Graphics& g)
@@ -129,14 +133,18 @@ namespace phaser::ui
         g.setColour (accent.withAlpha (0.22f)); g.strokePath (inner, juce::PathStrokeType (1.0f));
 
         // título + barras diagonales
-        g.setColour (accent); g.setFont (font (27.0f * s).withExtraKerningFactor (0.1f));
-        const auto titleArea = juce::Rectangle<float> (right ? 22.0f * s : 30.0f * s, 8.0f * s, 250.0f * s, 38.0f * s);
+        // Keep the module title and ON switch in separate header zones.
+        g.setColour (accent); g.setFont (font (19.0f * s).withExtraKerningFactor (0.045f));
+        const auto titleArea = juce::Rectangle<float> (right ? 76.0f * s : 28.0f * s,
+                                                        7.0f * s,
+                                                        right ? 208.0f * s : 190.0f * s,
+                                                        30.0f * s);
         g.drawText (title, titleArea, right ? juce::Justification::centredRight : juce::Justification::centredLeft, true);
 
-        const float sx = right ? 40.0f * s : (float) getWidth() - 122.0f * s;
+        const float sx = right ? 88.0f * s : (float) getWidth() - 122.0f * s;
         for (int i = 0; i < 4; ++i)
         {
-            juce::Path p; const float x = sx + (float) i * 20.0f * s, y = 20.0f * s, w = 11.0f * s, hh = 12.0f * s;
+            juce::Path p; const float x = sx + (float) i * 20.0f * s, y = 43.0f * s, w = 8.0f * s, hh = 8.0f * s;
             p.startNewSubPath (x + 5 * s, y); p.lineTo (x + 5 * s + w, y); p.lineTo (x + w, y + hh); p.lineTo (x, y + hh); p.closeSubPath();
             g.setColour (accent.withAlpha (0.35f + 0.15f * (float) i)); g.fillPath (p);
         }
