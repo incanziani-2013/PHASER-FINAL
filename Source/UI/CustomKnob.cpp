@@ -43,8 +43,14 @@ namespace phaser::ui
         if (layout == Layout::Row)
         {
             slider.setBounds (b.removeFromLeft (b.getHeight()).reduced ((int) (h * 0.04f)));
-            valueLabel.setFont (font (h * 0.2f, false));
-            valueLabel.setBounds (b.getX() + (int) (h * 0.08f), (int) (h * 0.12f), b.getWidth() - (int) (h * 0.08f), (int) (h * 0.30f));
+            // Reserve distinct areas for the parameter name and its value.
+            // Previously both were drawn over the same region, causing collisions.
+            const int labelY = (int) (h * 0.10f);
+            const int labelH = (int) (h * 0.34f);
+            const int valueX = b.getX() + (int) (h + h * 0.08f + (b.getWidth() - h - h * 0.08f) * 0.62f);
+            const int valueW = juce::jmax (0, b.getRight() - valueX);
+            valueLabel.setFont (font (h * 0.15f, false));
+            valueLabel.setBounds (valueX, labelY, valueW, labelH);
         }
         else
         {
@@ -62,10 +68,11 @@ namespace phaser::ui
         if (layout == Layout::Row)
         {
             const float x = h + h * 0.08f, w = (float) getWidth() - x;
-            g.setColour (textCol); g.setFont (font (h * 0.2f).withExtraKerningFactor (0.06f));
-            g.drawText (name, juce::Rectangle<float> (x, h * 0.12f, w * 0.7f, h * 0.30f), juce::Justification::centredLeft, true);
+            const float nameW = w * 0.62f;
+            g.setColour (textCol); g.setFont (font (h * 0.16f).withExtraKerningFactor (0.035f));
+            g.drawText (name, juce::Rectangle<float> (x, h * 0.10f, nameW, h * 0.34f), juce::Justification::centredLeft, true);
 
-            auto bar = juce::Rectangle<float> (x, h * 0.58f, w, juce::jmax (3.0f, h * 0.06f));
+            auto bar = juce::Rectangle<float> (x, h * 0.62f, w, juce::jmax (3.0f, h * 0.06f));
             g.setColour (dim); g.fillRoundedRectangle (bar, bar.getHeight() * 0.5f);
             const float prop = (float) slider.valueToProportionOfLength (slider.getValue());
             auto fill = bar.withWidth (bar.getWidth() * prop);
