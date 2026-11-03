@@ -1,0 +1,11 @@
+# TODO / progreso
+- [x] ETAPA 1 estructura + CMake + scripts
+- [x] ETAPA 2 DSP de los 4 módulos + master (probado offline, 31/31)
+- [x] ETAPA 3 parámetros (46) con layout APVTS, nombres/rangos, guardado de estado
+- [x] ETAPA 4 GUI (look&feel, knobs, paneles, tabs, medidores) — SIN COMPILAR
+- [x] ETAPA 5 visualizador central — SIN COMPILAR
+- [x] ETAPA 6 20 presets + guardar/cargar/borrar — SIN COMPILAR
+- [~] ETAPA 7 optimización: DSP medido (~1,2 % de un núcleo, esta máquina). GUI sin medir.
+- [ ] ETAPA 8 compilar en Windows, corregir errores, instalar, probar en FL Studio
+- [ ] Verificar: automatización en FL, recuperación de estado, bypass, presets, tamaño de ventana
+- [ ] Futuro: oversampling 2x en Color/Glitch, limitador true-peak, stutter sincronizado a ppq, guardar tamaño de ventana

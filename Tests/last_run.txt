@@ -1,0 +1,42 @@
+== COLOR ==
+  [ ok ] transparente con drive=0/sat=0 (dif 0.020 dB)
+  [ ok ] salida finita y acotada (max 0.264)
+  [ ok ] genera armónicos 2º/3º (-27.2 dB / -10.1 dB bajo fundamental)
+  [ ok ] blend=0 devuelve la señal original (err 0.00e+00)
+== SPECTRUM ==
+  [ ok ] plano con todo a 0 dB (0.000 dB)
+  [ ok ] low shelf +12 dB @40 Hz = 11.80 dB
+  [ ok ] high shelf -12 dB @14 kHz = -11.88 dB
+  [ ok ] peaking +9 dB @2 kHz = 9.00 dB
+  [ ok ] low-pass 1 kHz atenúa 8 kHz -38.1 dB
+  [ ok ] high-pass 1 kHz atenúa 100 Hz -40.0 dB
+  [ ok ] band-pass centrado en 1 kHz
+  [ ok ] sin discontinuidades al automatizar filtro/ganancia (salto máx 0.111)
+== MOTION ==
+  [ ok ] modo 0: mod=0 deja pasar la señal intacta (err 0.00e+00)
+  [ ok ] modo 0: estable con feedback 0.85 (max 1.17)
+  [ ok ] modo 0: genera diferencia L/R (imagen estéreo)
+  [ ok ] modo 0: width=0 colapsa a mono (compat. mono)
+  [ ok ] modo 1: mod=0 deja pasar la señal intacta (err 0.00e+00)
+  [ ok ] modo 1: estable con feedback 0.85 (max 2.03)
+  [ ok ] modo 1: genera diferencia L/R (imagen estéreo)
+  [ ok ] modo 1: width=0 colapsa a mono (compat. mono)
+== GLITCH ==
+  [ ok ] mix=0 deja pasar la señal original (err 0.00e+00)
+  [ ok ] bitcrush a 2 bits cuantiza a pocos niveles (3 distintos)
+  [ ok ] reducción de sample-rate mantiene muestras (21688 repetidas)
+  [ ok ] stutter repite el buffer (periodo 689 muestras, err 0.0018)
+  [ ok ] todo al máximo: finito y acotado (max 0.71)
+== MASTER ==
+  [ ok ] limitador respeta el techo -0.5 dBFS con +9.5 dB de entrada (max 0.9441)
+  [ ok ] reporta reducción de ganancia (-10.0 dB)
+  [ ok ] transparente por debajo del techo (err 0.00e+00)
+  [ ok ] drive máximo + limitador acotado (max 0.317)
+== INDEPENDENCIA DEL TAMAÑO DE BUFFER ==
+  [ ok ] cadena completa igual con bloques de 1/64/997 muestras (dif 0.00e+00 / 0.00e+00)
+== SAMPLE RATES Y MONO ==
+  [ ok ] mono, 22.05k..192k: salida finita y acotada
+== RENDIMIENTO (referencia, esta máquina) ==
+  4 módulos + master, estéreo 44.1 kHz: 91.4x tiempo real (~1.1 % de un núcleo)
+
+31 comprobaciones, 0 fallos
